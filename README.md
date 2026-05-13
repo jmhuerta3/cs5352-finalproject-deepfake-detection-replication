@@ -29,12 +29,40 @@ three model variants across four evaluation conditions.
 
 ## Results Summary
 
-| Model | Clean F1 | OOD F1 | Attack (Time) F1 | Attack (Freq) F1 |
-|---|---|---|---|---|
-| RawNet3 Baseline | 0.821 | 0.903 | 0.197 | 0.049 |
-| RawNet3 + RandAug | 0.507 | 0.862 | 0.073 | 0.030 |
-| RawNet3 + F-SAT | 0.710 | 0.950 | 0.321 | 0.093 |
-| Paper F-SAT | 0.974 | — | 0.910 | 0.924 |
+Three experimental runs were conducted:
+
+| Run | Key Change | Purpose |
+|---|---|---|
+| Run 1 | Unbalanced data (9:1 fake:real) | Establish baseline, discover failure modes |
+| Run 2 | 5 epochs + balanced 5,000/5,000 split | Fix class imbalance |
+| Run 3 | 15 epochs + stronger F-SAT + improvements | Best performance |
+
+### Run 1 — Unbalanced Dataset
+
+| Model | Clean F1 | OOD F1 | Attack (Time) F1 | Attack (Freq) F1 | Real Accuracy |
+|---|---|---|---|---|---|
+| RawNet3 Baseline | 0.947 | 1.000* | 0.712 | 0.858 | 7% |
+| RawNet3 + RandAug | 0.945 | 1.000* | 0.769 | 0.924 | 21% |
+| RawNet3 + F-SAT | 0.946 | 1.000* | 0.877 | 0.936 | 1% |
+
+*OOD F1=1.000 is misleading because FakeAudio contains only fake samples so the model scores 1.0 by predicting everything as fake.
+
+### Run 2 — Balanced Dataset (5K/5K)
+
+| Model | Clean F1 | OOD F1 | Attack (Time) F1 | Attack (Freq) F1 | Real Accuracy |
+|---|---|---|---|---|---|
+| RawNet3 Baseline | 0.826 | 0.917 | 0.118 | 0.207 | 83% |
+| RawNet3 + RandAug | 0.793 | 0.886 | 0.141 | 0.108 | 77% |
+| RawNet3 + F-SAT | 0.808 | 0.898 | 0.154 | 0.139 | 79% |
+
+### Run 3 — All Improvements Applied
+
+| Model | Clean F1 | OOD F1 | Attack (Time) F1 | Attack (Freq) F1 | Real accuracy |
+|---|---|---|---|---|---|
+| RawNet3 Baseline | 0.821 | 0.903 | 0.197 | 0.049 | 79% |
+| RawNet3 + RandAug | 0.507 | 0.862 | 0.073 | 0.030 | 99% |
+| RawNet3 + F-SAT | 0.710 | 0.950 | 0.321 | 0.093 | 95% |
+| **Paper F-SAT** | **0.974** | **—** | **0.910** | **0.924** | **96%** |
 
 ---
 
