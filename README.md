@@ -1,2 +1,73 @@
 # CS5352-FINALPROJECT-Deepfake-Detection-Replication
 Replication of F-sat deepfake audio detection experiments as described in "I Can Hear You: Selective Robust Training for Deepfake Audio Detection" by Zirui Zhang.
+
+# Deepfake Audio Detection — F-SAT Replication
+
+Replication of **"I Can Hear You: Selective Robust Training for Deepfake Audio Detection"**  
+Zhang et al., ICLR 2025 (Spotlight)
+
+**Jazmin M. Huerta | CS 5352 Computer Security | Spring 2026**
+
+---
+
+## Overview
+
+This project replicates the F-SAT (Frequency-Selective Adversarial Training)
+method for deepfake audio detection across three experimental runs, comparing
+three model variants across four evaluation conditions.
+
+---
+
+## Datasets
+
+| Dataset | Size | Purpose |
+|---|---|---|
+| ASVspoof 2019 LA | 23.6 GB | Training + clean evaluation |
+| FakeAudio (Kaggle) | 26.9 GB | Out-of-distribution (OOD) evaluation |
+
+---
+
+## Results Summary
+
+| Model | Clean F1 | OOD F1 | Attack (Time) F1 | Attack (Freq) F1 |
+|---|---|---|---|---|
+| RawNet3 Baseline | 0.821 | 0.903 | 0.197 | 0.049 |
+| RawNet3 + RandAug | 0.507 | 0.862 | 0.073 | 0.030 |
+| RawNet3 + F-SAT | 0.710 | 0.950 | 0.321 | 0.093 |
+| Paper F-SAT | 0.974 | — | 0.910 | 0.924 |
+
+---
+
+## How to Run
+
+1. Open `FSAT_Replication_Colab.ipynb` in Google Colab
+2. Set runtime to **A100 GPU**
+3. Run Cell 1, itm mounts Drive and installs packages
+4. First time: run Cell 2 with your Kaggle credentials to download datasets
+5. Returning user: skip Cell 2, the datasets are read directly from Drive
+6. Run all remaining cells in order!
+
+---
+
+## Files
+
+| File | Description |
+|---|---|
+| `FSAT_Replication_Colab.ipynb` | Full experiment notebook |
+| `final_report_jazmin_huerta` | Written report |
+| `fsat_presentation_jazmin_huerta.pdf` | Presentation slides |
+
+---
+
+## Key Findings
+
+- F-SAT core claim confirmed, since it consistently outperformed baseline under attack
+- Class imbalance (9:1 fake:real) causes real audio detection to collapse to 0%
+- Fixing balance to 5K/5K improved detection of genuine voices from 0% to 95%
+- Pretrained weights (model.pt) are not publicly available, this was identified as a reproducibility gap
+
+---
+
+## Reference
+
+Zhang et al., *"I Can Hear You: Selective Robust Training for Deepfake Audio Detection"*, ICLR 2025.
