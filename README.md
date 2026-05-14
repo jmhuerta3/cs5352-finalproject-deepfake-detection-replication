@@ -70,10 +70,10 @@ Three experimental runs were conducted:
 
 1. Open `FSAT_Replication_Colab.ipynb` in Google Colab
 2. Set runtime to **A100 GPU**
-3. Run Cell 1, itm mounts Drive and installs packages
+3. Run Cell 1, it mounts Drive and installs packages
 4. First time: run Cell 2 with your Kaggle credentials to download datasets
 5. Returning user: skip Cell 2, the datasets are read directly from Drive
-6. Run all remaining cells in order!
+6. Run all remaining cells in order! (1 through 12)
 
 ---
 
@@ -82,8 +82,7 @@ Three experimental runs were conducted:
 | File | Description |
 |---|---|
 | `FSAT_Replication_Colab.ipynb` | Full experiment notebook |
-| `final_report_jazmin_huerta` | Written report |
-| `fsat_presentation_jazmin_huerta.pdf` | Presentation slides |
+| `results/ (folder)` | My experimental results from run 2 and 3 |
 
 ---
 
